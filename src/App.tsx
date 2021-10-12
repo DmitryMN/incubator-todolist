@@ -10,10 +10,16 @@ function App() {
         {id: 3, title: "React", isDone: true}
     ];
 
+    let tasks2 = [
+        {id: 1, title: "Terminator", isDone: true},
+        {id: 2, title: "XXX", isDone: false},
+        {id: 3, title: "Jentlments of fortune", isDone: true}
+    ];
+
     return (
         <div className="App">
-            <ToDoList title="What to learn"/>
-            <ToDoList title="Movies"/>
+            <ToDoList title="What to learn" tasks={tasks1}/>
+            <ToDoList title="Movies" tasks={tasks2}/>
         </div>
     );
 }
