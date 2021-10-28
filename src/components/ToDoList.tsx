@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import {ButtonChange} from "./ButtonChange/ButtonChange";
 import {FilterValuesType} from "../App";
 
 export type TasksType = {
@@ -15,7 +16,7 @@ type propsToDoListType = {
     addTask: (title: string) => void
 }
 
-function ToDoList(props: propsToDoListType) {
+const ToDoList = (props: propsToDoListType) => {
     const [title, setTitle] = useState<string>("");
 
     const addTask = () => {
@@ -35,10 +36,9 @@ function ToDoList(props: propsToDoListType) {
         setTitle(event.currentTarget.value);
     }
 
-
-    const changeFilterAllHandler = () => props.changeFilter("all");
-    const changeFilterActiveHandler = () => props.changeFilter("active");
-    const changeFilterCompletedHandler = () => props.changeFilter("completed");
+    const changeFilterHandler = (value: FilterValuesType) => {
+        props.changeFilter(value);
+    }
 
     return(
         <div>
@@ -58,9 +58,9 @@ function ToDoList(props: propsToDoListType) {
                 </li>})}
             </ul>
             <div>
-                <button onClick={changeFilterAllHandler}>All</button>
-                <button onClick={changeFilterActiveHandler}>Active</button>
-                <button onClick={changeFilterCompletedHandler}>Completed</button>
+                <ButtonChange name={"all"} callBack={() => changeFilterHandler("all")}/>
+                <ButtonChange name={"active"} callBack={() => changeFilterHandler("active")}/>
+                <ButtonChange name={"completed"} callBack={() => changeFilterHandler("completed")}/>
             </div>
         </div>
     );

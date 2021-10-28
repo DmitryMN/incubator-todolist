@@ -5,7 +5,7 @@ import './App.css';
 
 export type FilterValuesType = "all" | "active" | "completed";
 
-function App() {
+const App = () => {
 
     let [tasks, setTasks] = useState<Array<TasksType>>([
         {id: v1(), title: "CSS", isDone: true},
