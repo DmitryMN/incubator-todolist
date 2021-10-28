@@ -26,6 +26,10 @@ const ToDoList = (props: propsToDoListType) => {
         }
     }
 
+    const onRemoveTaskHandler = (tId: string) => {
+        props.remove_task(tId);
+    }
+
     const onKeyPressAddTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         if(event.key === "Enter") {
             addTask();
@@ -47,14 +51,13 @@ const ToDoList = (props: propsToDoListType) => {
                 <input value={title} placeholder="Enter your text"
                        onKeyPress={onKeyPressAddTaskHandler}
                        onChange={onChangeTitleHandler}/>
-                <button onClick={addTask}>+</button>
+                <ButtonChange name={"+"} callBack={() => addTask()}/>
             </div>
             <ul>
                 {props.tasks.map(elem => {
-                    const onRemoveTaskHandler = () => props.remove_task(elem.id);
                     return <li key={elem.id}><input type="checkbox" checked={elem.isDone}/>
                     <span>{elem.title}</span>
-                    <button onClick={onRemoveTaskHandler}>x</button>
+                    <ButtonChange name={"x"} callBack={() => onRemoveTaskHandler(elem.id)}/>
                 </li>})}
             </ul>
             <div>
