@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import {ButtonChange} from "./ButtonChange/ButtonChange";
+import {ButtonChange} from "./ElementComponents/ButtonChange";
 import {FilterValuesType} from "../App";
+import {Input} from "./ElementComponents/Input";
 
 export type TasksType = {
     id: string,
@@ -30,16 +31,6 @@ const ToDoList = (props: propsToDoListType) => {
         props.remove_task(tId);
     }
 
-    const onKeyPressAddTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-        if(event.key === "Enter") {
-            addTask();
-        }
-    }
-
-    const onChangeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setTitle(event.currentTarget.value);
-    }
-
     const changeFilterHandler = (value: FilterValuesType) => {
         props.changeFilter(value);
     }
@@ -47,12 +38,8 @@ const ToDoList = (props: propsToDoListType) => {
     return(
         <div>
             <h3>{props.title}</h3>
-            <div>
-                <input value={title} placeholder="Enter your text"
-                       onKeyPress={onKeyPressAddTaskHandler}
-                       onChange={onChangeTitleHandler}/>
-                <ButtonChange name={"+"} callBack={() => addTask()}/>
-            </div>
+            <Input title={title} setTitle={setTitle} addTask={addTask}/>
+            <ButtonChange name={"+"} callBack={addTask}/>
             <ul>
                 {props.tasks.map(elem => {
                     return <li key={elem.id}><input type="checkbox" checked={elem.isDone}/>
