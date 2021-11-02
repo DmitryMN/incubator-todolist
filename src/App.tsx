@@ -44,9 +44,18 @@ const App = () => {
         setTasks([ newTask, ...tasks]);
     }
 
+    const changeStatus = (taskId: string, isDone: boolean) => {
+        console.log(taskId);
+        let task = tasks.find(item => item.id === taskId);
+        if(task) {
+            task.isDone = isDone;
+        }
+        setTasks([...tasks])
+    }
+
     return (
         <div className="App">
-            <ToDoList title="What to learn" tasks={tasksForTodolist} remove_task={removeTask} changeFilter={changeFilter} addTask={addTask}/>
+            <ToDoList title="What to learn" tasks={tasksForTodolist} remove_task={removeTask} changeFilter={changeFilter} addTask={addTask} changeStatus={changeStatus}/>
         </div>
     );
 }
