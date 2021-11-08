@@ -8,9 +8,9 @@ export type FilterValuesType = "all" | "active" | "completed";
 const App = () => {
 
     let [tasks, setTasks] = useState<Array<TasksType>>([
-        {id: v1(), title: "CSS", isDone: true},
-        {id: v1(), title: "JS", isDone: true},
-        {id: v1(), title: "React", isDone: true},
+        {id: v1(), title: "CSS", isDone: false},
+        {id: v1(), title: "JS", isDone: false},
+        {id: v1(), title: "React", isDone: false},
         {id: v1(), title: "Redux", isDone: false}
     ]);
     const [filter, setFilter] = useState<FilterValuesType>("all");

@@ -36,7 +36,6 @@ const ToDoList = (props: propsToDoListType) => {
         props.changeFilter(value);
     }
 
-
     return(
         <div>
             <h3>{props.title}</h3>
@@ -47,7 +46,7 @@ const ToDoList = (props: propsToDoListType) => {
                     const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         props.changeStatus(elem.id, e.currentTarget.checked)
                     }
-                    return <li key={elem.id}><input type="checkbox" onChange={onChangeStatusHandler} />
+                    return <li className={elem.isDone ? "is_done" : ""} key={elem.id}><input type="checkbox" checked={elem.isDone} onChange={onChangeStatusHandler} />
                     <span>{elem.title}</span>
                     <ButtonChange name={"x"} callBack={() => onRemoveTaskHandler(elem.id)} />
                 </li>})}
