@@ -16,6 +16,7 @@ type propsToDoListType = {
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
     changeStatus: (taskId: string, isDone: boolean) => void
+    filter: FilterValuesType
 }
 
 const ToDoList = (props: propsToDoListType) => {
@@ -36,6 +37,10 @@ const ToDoList = (props: propsToDoListType) => {
         props.changeFilter(value);
     }
 
+    const classNameAll = props.filter === "all" ? "active-filter" : "";
+    const classNameActive = props.filter === "active" ? "active-filter" : "";
+    const classNameCompleted = props.filter === "completed" ? "active-filter" : "";
+
     return(
         <div>
             <h3>{props.title}</h3>
@@ -52,9 +57,9 @@ const ToDoList = (props: propsToDoListType) => {
                 </li>})}
             </ul>
             <div>
-                <ButtonChange name={"all"} callBack={() => changeFilterHandler("all")} />
-                <ButtonChange name={"active"} callBack={() => changeFilterHandler("active")} />
-                <ButtonChange name={"completed"} callBack={() => changeFilterHandler("completed")} />
+                <ButtonChange name={"all"} callBack={() => changeFilterHandler("all")} className={classNameAll} />
+                <ButtonChange name={"active"} callBack={() => changeFilterHandler("active")} className={classNameActive} />
+                <ButtonChange name={"completed"} callBack={() => changeFilterHandler("completed")} className={classNameCompleted}/>
             </div>
         </div>
     );

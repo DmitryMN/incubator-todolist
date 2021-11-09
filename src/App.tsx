@@ -55,7 +55,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <ToDoList title="What to learn" tasks={tasksForTodolist} remove_task={removeTask} changeFilter={changeFilter} addTask={addTask} changeStatus={changeStatus}/>
+            <ToDoList title="What to learn" tasks={tasksForTodolist} remove_task={removeTask} changeFilter={changeFilter} addTask={addTask} changeStatus={changeStatus} filter={filter}/>
         </div>
     );
 }
