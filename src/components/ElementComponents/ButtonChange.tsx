@@ -1,5 +1,4 @@
 import React from "react";
-import {FilterValuesType} from "../../App";
 
 type buttonChangeProps = {
     name: string
@@ -7,13 +6,13 @@ type buttonChangeProps = {
     className?: string
 }
 
-export const ButtonChange = (props: buttonChangeProps) => {
+export const ButtonChange = ({name, callBack, className}: buttonChangeProps) => {
 
     const btnClick = () => {
-        props.callBack();
+        callBack();
     }
 
     return(
-        <button className={props.className} onClick={btnClick}>{props.name}</button>
+        <button className={className} onClick={btnClick}>{name}</button>
     );
 }

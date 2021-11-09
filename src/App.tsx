@@ -45,7 +45,6 @@ const App = () => {
     }
 
     const changeStatus = (taskId: string, isDone: boolean) => {
-        console.log(taskId);
         let task = tasks.find(item => item.id === taskId);
         if(task) {
             task.isDone = isDone;

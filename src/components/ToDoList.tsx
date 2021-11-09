@@ -21,12 +21,16 @@ type propsToDoListType = {
 
 const ToDoList = (props: propsToDoListType) => {
     const [title, setTitle] = useState<string>("");
+    const [error, setError] = useState<boolean>(false)
 
     const addTask = () => {
-        if(title) {
-            props.addTask(title);
-            setTitle("");
+        const trimmedTitle = title.trim()
+        if(trimmedTitle) {
+            props.addTask(trimmedTitle);
+        } else {
+            setError(true);
         }
+        setTitle("");
     }
 
     const onRemoveTaskHandler = (tId: string) => {
@@ -44,7 +48,7 @@ const ToDoList = (props: propsToDoListType) => {
     return(
         <div>
             <h3>{props.title}</h3>
-            <Input title={title} setTitle={setTitle} addTask={addTask} />
+            <Input title={title} setTitle={setTitle} addTask={addTask} error={error} setError={setError}/>
             <ButtonChange name={"+"} callBack={addTask}/>
             <ul>
                 {props.tasks.map(elem => {
