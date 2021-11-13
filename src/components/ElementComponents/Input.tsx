@@ -1,14 +1,14 @@
 import React, {ChangeEvent, KeyboardEvent} from "react";
 
 type InputPropsType = {
-    title: string
-    setTitle: (value: string) => void
+    inputField: string
+    setInputField: (value: string) => void
     addTask: () => void
     error: boolean
     setError: (value: boolean) => void
 }
 
-export const Input = ({title, setTitle, addTask, error, setError}: InputPropsType) => {
+export const Input = ({inputField, setInputField, addTask, error, setError}: InputPropsType) => {
 
     const classNameError = error ? "error" : ""
 
@@ -20,10 +20,10 @@ export const Input = ({title, setTitle, addTask, error, setError}: InputPropsTyp
 
     const onChangeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setError(false);
-        setTitle(event.currentTarget.value);
+        setInputField(event.currentTarget.value);
     }
 
     return(
-        <input className={classNameError} value={title} placeholder={"Enter your text"}  onKeyPress={onKeyPressAddTaskHandler} onChange={onChangeTitleHandler}/>
+        <input className={classNameError} value={inputField} placeholder={"Enter your text"}  onKeyPress={onKeyPressAddTaskHandler} onChange={onChangeTitleHandler}/>
     );
 }
