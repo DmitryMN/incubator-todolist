@@ -5,7 +5,7 @@ import {Input} from "./ElementComponents/Input";
 import Tasks from "./ElementComponents/Tasks";
 
 
-type propsToDoListType = {
+type PropsToDoListType = {
     id: string
     title: string
     tasks: Array<TasksType>
@@ -17,7 +17,7 @@ type propsToDoListType = {
     removeTodoList: (todoListID: string) => void
 }
 
-const ToDoList = ({id, title, filter, ...props}: propsToDoListType) => {
+const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
     const [inputField, setInputField] = useState<string>("");
     const [error, setError] = useState<boolean>(false)
 
@@ -42,6 +42,7 @@ const ToDoList = ({id, title, filter, ...props}: propsToDoListType) => {
     const classNameAll = filter === "all" ? "active-filter" : "";
     const classNameActive = filter === "active" ? "active-filter" : "";
     const classNameCompleted = filter === "completed" ? "active-filter" : "";
+
 
     let tasksForTodolist: Array<TasksType> = props.tasks;
     switch(filter) {
