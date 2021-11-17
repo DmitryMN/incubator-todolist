@@ -3,6 +3,7 @@ import {ButtonChange} from "./ElementComponents/ButtonChange";
 import {FilterValuesType, TasksType} from "../App";
 import {Input} from "./ElementComponents/Input";
 import Tasks from "./ElementComponents/Tasks";
+import {AddItemForm} from "../AddItemForm";
 
 
 type PropsToDoListType = {
@@ -60,8 +61,9 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
                 {title}
                 <ButtonChange name={"x"} callBack={() => props.removeTodoList(id)}/>
             </h3>
-            <Input inputField={inputField} setInputField={setInputField} addTask={addTask} error={error} setError={setError}/>
-            <ButtonChange name={"+"} callBack={addTask}/>
+            {/*<Input inputField={inputField} setInputField={setInputField} addTask={addTask} error={error} setError={setError}/>*/}
+            {/*<ButtonChange name={"+"} callBack={addTask}/>*/}
+            <AddItemForm id={id} addTask={props.addTask}/>
             <ul>
                 {tasksForTodolist.map(task => {
                     return(
