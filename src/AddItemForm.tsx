@@ -3,19 +3,18 @@ import {ButtonChange} from "./components/ElementComponents/ButtonChange";
 import {Input} from "./components/ElementComponents/Input";
 
 type AddItemFormType = {
-    id: string
-    addTask: (title: string, todoListID: string) => void
+    addItemCallback: (titleItem: string) => void
 }
 
-export const AddItemForm = ({id, ...props}: AddItemFormType) => {
+export const AddItemForm = (props: AddItemFormType) => {
     const errorStyle = {color: "red", fontWeight: 400};
     const [inputField, setInputField] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
 
-    const addTask = () => {
+    const addItem = () => {
         const trimmedTitle = inputField.trim()
         if(trimmedTitle) {
-            props.addTask(trimmedTitle, id);
+            props.addItemCallback(trimmedTitle);
         } else {
             setError(true);
         }
@@ -26,9 +25,9 @@ export const AddItemForm = ({id, ...props}: AddItemFormType) => {
 
     return(
         <div>
-            <Input inputField={inputField} setInputField={setInputField} addTask={addTask} error={error} setError={setError}/>
-            <ButtonChange name={"+"} callBack={addTask}/>
+            <Input inputField={inputField} setInputField={setInputField} addItem={addItem} error={error} setError={setError}/>
+            <ButtonChange name={"+"} callBack={addItem}/>
             {errorMessage}
         </div>
     );
-}
+};

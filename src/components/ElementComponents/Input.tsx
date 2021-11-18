@@ -3,18 +3,18 @@ import React, {ChangeEvent, KeyboardEvent} from "react";
 type InputPropsType = {
     inputField: string
     setInputField: (value: string) => void
-    addTask: () => void
+    addItem: () => void
     error: boolean
     setError: (value: boolean) => void
 }
 
-export const Input = ({inputField, setInputField, addTask, error, setError}: InputPropsType) => {
+export const Input = ({inputField, setInputField, addItem, error, setError}: InputPropsType) => {
 
     const classNameError = error ? "error" : ""
 
     const onKeyPressAddTaskHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         if(event.key === "Enter") {
-            addTask();
+            addItem();
         }
     }
 

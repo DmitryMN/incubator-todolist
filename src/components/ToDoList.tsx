@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {ButtonChange} from "./ElementComponents/ButtonChange";
 import {FilterValuesType, TasksType} from "../App";
-import {Input} from "./ElementComponents/Input";
 import Tasks from "./ElementComponents/Tasks";
 import {AddItemForm} from "../AddItemForm";
 
@@ -19,17 +18,21 @@ type PropsToDoListType = {
 }
 
 const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
-    const [inputField, setInputField] = useState<string>("");
-    const [error, setError] = useState<boolean>(false)
+    // const [inputField, setInputField] = useState<string>("");
+    // const [error, setError] = useState<boolean>(false)
 
-    const addTask = () => {
-        const trimmedTitle = inputField.trim()
-        if(trimmedTitle) {
-            props.addTask(trimmedTitle, id);
-        } else {
-            setError(true);
-        }
-        setInputField("");
+    // const addTask = () => {
+    //     const trimmedTitle = inputField.trim()
+    //     if(trimmedTitle) {
+    //         props.addTask(trimmedTitle, id);
+    //     } else {
+    //         setError(true);
+    //     }
+    //     setInputField("");
+    // }
+
+    const addItemCallback = (titleItem: string) => {
+        props.addTask(titleItem, id);
     }
 
     const onRemoveTaskHandler = (tId: string) => {
@@ -63,7 +66,7 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
             </h3>
             {/*<Input inputField={inputField} setInputField={setInputField} addTask={addTask} error={error} setError={setError}/>*/}
             {/*<ButtonChange name={"+"} callBack={addTask}/>*/}
-            <AddItemForm id={id} addTask={props.addTask}/>
+            <AddItemForm addItemCallback={addItemCallback}/>
             <ul>
                 {tasksForTodolist.map(task => {
                     return(
