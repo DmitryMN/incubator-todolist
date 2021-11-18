@@ -18,18 +18,6 @@ type PropsToDoListType = {
 }
 
 const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
-    // const [inputField, setInputField] = useState<string>("");
-    // const [error, setError] = useState<boolean>(false)
-
-    // const addTask = () => {
-    //     const trimmedTitle = inputField.trim()
-    //     if(trimmedTitle) {
-    //         props.addTask(trimmedTitle, id);
-    //     } else {
-    //         setError(true);
-    //     }
-    //     setInputField("");
-    // }
 
     const addItemCallback = (titleItem: string) => {
         props.addTask(titleItem, id);
@@ -64,8 +52,6 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
                 {title}
                 <ButtonChange name={"x"} callBack={() => props.removeTodoList(id)}/>
             </h3>
-            {/*<Input inputField={inputField} setInputField={setInputField} addTask={addTask} error={error} setError={setError}/>*/}
-            {/*<ButtonChange name={"+"} callBack={addTask}/>*/}
             <AddItemForm addItemCallback={addItemCallback}/>
             <ul>
                 {tasksForTodolist.map(task => {
