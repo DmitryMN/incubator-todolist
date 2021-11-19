@@ -3,6 +3,7 @@ import {ButtonChange} from "./ElementComponents/ButtonChange";
 import {FilterValuesType, TasksType} from "../App";
 import Tasks from "./ElementComponents/Tasks";
 import {AddItemForm} from "../AddItemForm";
+import {EditableSpan} from "./ElementComponents/EditableSpan"
 
 
 type PropsToDoListType = {
@@ -15,6 +16,7 @@ type PropsToDoListType = {
     changeStatus: (taskId: string, isDone: boolean, todoListID: string) => void
     filter: FilterValuesType
     removeTodoList: (todoListID: string) => void
+    changeTitleTodoList: (todoListID: string, title: string) => void
 }
 
 const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
@@ -29,6 +31,10 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
 
     const changeFilterHandler = (value: FilterValuesType) => {
         props.changeFilter(value, id);
+    }
+
+    const changeTitleCallback = (title: string) => {
+        props.changeTitleTodoList(id, title);
     }
 
     const classNameAll = filter === "all" ? "active-filter" : "";
@@ -49,7 +55,7 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
     return(
         <div>
             <h3>
-                {title}
+                <EditableSpan title={title} changeTitleCallback={changeTitleCallback} />              
                 <ButtonChange name={"x"} callBack={() => props.removeTodoList(id)}/>
             </h3>
             <AddItemForm addItemCallback={addItemCallback}/>

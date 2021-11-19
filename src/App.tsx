@@ -77,6 +77,15 @@ const App = () => {
         setTasksState({...tasksState, [todoListID]: [...tasksState[todoListID]]});
     }
 
+    const changeTitleTodoList = (todoListID: string, title: string) => {
+        const todoList =  todoLists.find(task => task.id === todoListID);
+        if(todoList) {
+            todoList.title = title;
+        }
+        setTodoLists(todoLists.map(elem => elem));
+    }
+
+
     const addTodoList = (title: string) => {
         const todoListID = v1();
         const newTodoList: TodoListType = {
@@ -101,6 +110,7 @@ const App = () => {
                 changeStatus={changeStatus}
                 filter={todoList.filter}
                 removeTodoList={removeTodoList}
+                changeTitleTodoList={changeTitleTodoList}
             />
         );
     })
