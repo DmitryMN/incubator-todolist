@@ -29,7 +29,7 @@ const App = () => {
 
     const [todoLists, setTodoLists] = useState<Array<TodoListType>>([
         { id: todoListID_1, title: "What to learn", filter: "all" },
-        { id: todoListID_2, title: "What to by", filter: "all" }
+        { id: todoListID_2, title: "What to buy", filter: "all" }
     ]);
 
     let [tasksState, setTasksState] = useState<TasksStateType>({
@@ -85,6 +85,14 @@ const App = () => {
         setTodoLists(todoLists.map(elem => elem));
     }
 
+    const changeTitleTasks = (taskId: string, title: string, todoListID: string) => {
+        const task = tasksState[todoListID].find(ts => ts.id === taskId);
+        if(task) {
+            task.title = title
+        }
+        setTasksState({...tasksState, [todoListID]: [...tasksState[todoListID]]})
+    }
+
 
     const addTodoList = (title: string) => {
         const todoListID = v1();
@@ -111,6 +119,7 @@ const App = () => {
                 filter={todoList.filter}
                 removeTodoList={removeTodoList}
                 changeTitleTodoList={changeTitleTodoList}
+                changeTitleTasks={changeTitleTasks}
             />
         );
     })

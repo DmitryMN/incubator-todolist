@@ -17,6 +17,7 @@ type PropsToDoListType = {
     filter: FilterValuesType
     removeTodoList: (todoListID: string) => void
     changeTitleTodoList: (todoListID: string, title: string) => void
+    changeTitleTasks: (taskId: string, title: string, todoListID: string) => void
 }
 
 const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
@@ -62,7 +63,7 @@ const ToDoList = ({id, title, filter, ...props}: PropsToDoListType) => {
             <ul>
                 {tasksForTodolist.map(task => {
                     return(
-                        <Tasks todoListId={id} task={task} onRemoveTaskHandler={onRemoveTaskHandler} changeStatus={props.changeStatus}/>
+                        <Tasks todoListId={id} task={task} onRemoveTaskHandler={onRemoveTaskHandler} changeStatus={props.changeStatus} changeTitleTasks={props.changeTitleTasks}/>
                     );
                 })}
             </ul>
